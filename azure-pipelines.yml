@@ -41,6 +41,6 @@ stages:
     - task: Docker@2
       inputs:
           containerRegistry: 'HimaACR1'
-          repository: 'HimaACR1'
+          repository: 'SQLRepo'
           command: 'buildAndPush'
           Dockerfile: '**/sqlimage/Dockerfile'
