@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: bindutwotierapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bindutwotierapp
+  template:
+    metadata:
+      labels:
+        app: bindutwotierapp 
+    spec:
+      containers:
+        - name: bindutwotierapp 
+          image: binduacr1.azurecr.io/bindutwotierapp
+          ports:
+          - containerPort: 5000
