@@ -40,4 +40,4 @@ stages:
               repository: 'sqlrepo'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/sqlimage/Dockerfile'
-              buildContext: '/sqlimage/Dockerfile'
+              
