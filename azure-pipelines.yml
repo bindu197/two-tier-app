@@ -37,7 +37,7 @@ stages:
     - task: Docker@2
       inputs:
               containerRegistry: 'acrsvcconn'
-              repository: 'bindurepo'
+              repository: 'sqlrepo'
               command: 'buildAndPush'
-              Dockerfile: '**/Dockerfile'
-              buildContext: '**/sqlimage/'
+              Dockerfile: '$(Build.SourcesDirectory)/sqlimage/Dockerfile'
+              buildContext: '/sqlimage/Dockerfile'
