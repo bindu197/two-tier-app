@@ -56,8 +56,8 @@ stages:
         connectionType: 'kubernetesServiceConnection'
         kubernetesServiceConnection: 'akssvcconn'
         manifests: |
-          $(Pipeline.Workspace)/manifests/python-new.yaml.yml
-          $(Pipeline.Workspace)/manifests/mysql-new.yaml.yml
+          $(Pipeline.Workspace)/manifests/python-new.yaml
+          $(Pipeline.Workspace)/manifests/mysql-new.yaml
           $(Pipeline.Workspace)/manifests/mysql-service
           $(Pipeline.Workspace)/manifests/flask-service.yaml
 
