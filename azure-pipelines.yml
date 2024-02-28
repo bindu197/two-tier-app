@@ -45,7 +45,7 @@ stages:
   dependsOn: Build
   displayName: Deploy to Azure Kubernetes Cluster
   jobs:
-  - job: Deploy to Kubernetes
+  - job: DeploytoKubernetes
     displayName: Deploy
     pool:
       vmImage: 'Ubuntu-latest'
