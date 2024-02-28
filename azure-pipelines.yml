@@ -41,6 +41,12 @@ stages:
               repository: 'sqlrepo'
               command: 'buildAndPush'
               Dockerfile: '$(Build.SourcesDirectory)/sqlimage/Dockerfile'
+    
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)/manifests'
+        artifact: 'artifact'
+        publishLocation: 'pipeline'
             
 - stage: Deploy
   dependsOn: Build
@@ -51,6 +57,14 @@ stages:
     pool:
       vmImage: 'Ubuntu-latest'
     steps:
+    
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'artifact'
+        targetPath: '$(Pipeline.Workspace)/manifests'
+
+
     - task: KubernetesManifest@1
       inputs:
         action: 'deploy'
