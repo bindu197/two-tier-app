@@ -49,13 +49,13 @@ stages:
     displayName: Deploy
     pool:
       vmImage: 'Ubuntu-latest'
-steps:
-- task: KubernetesManifest@1
-  inputs:
-    action: 'deploy'
-    connectionType: 'kubernetesServiceConnection'
-    kubernetesServiceConnection: 'akssvcconn'
-    manifests: '$(Build.SourcesDirectory)/manifests'
+    steps:
+    - task: KubernetesManifest@1
+      inputs:
+      action: 'deploy'
+      connectionType: 'kubernetesServiceConnection'
+      kubernetesServiceConnection: 'akssvcconn'
+      manifests: '$(Build.SourcesDirectory)/manifests'
 
 
     
