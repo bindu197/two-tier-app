@@ -44,11 +44,12 @@ stages:
 - stage: Deploy
   dependsOn: Build
   displayName: Deploy to Azure Kubernetes Cluster
-
-pool:
-  vmImageName: 'Ubuntu-latest'
+  jobs:
+  - job: Deploy to Kubernetes
+    displayName: Deploy
+    pool:
+      vmImage: 'Ubuntu-latest'
 steps:
-
 - task: KubernetesManifest@1
   inputs:
     action: 'deploy'
