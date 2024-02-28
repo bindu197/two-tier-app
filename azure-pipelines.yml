@@ -52,10 +52,10 @@ stages:
     steps:
     - task: KubernetesManifest@1
       inputs:
-      action: 'deploy'
-      connectionType: 'kubernetesServiceConnection'
-      kubernetesServiceConnection: 'akssvcconn'
-      manifests: '$(Build.SourcesDirectory)/s/manifests'
+        action: 'deploy'
+        connectionType: 'kubernetesServiceConnection'
+        kubernetesServiceConnection: 'akssvcconn'
+        manifests: '$(Build.SourcesDirectory)/manifests'
 
 
     
