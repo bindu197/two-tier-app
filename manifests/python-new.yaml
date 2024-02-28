@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask
+  labels: 
+    app: flask
+spec:
+  repliacs: 1
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask-container
+        image: registryfeb28.azurecr.io/bindurepo
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MYSQL_HOST
+          value: "clusterip-to-change"
+      imagePullSecrets:
+        - name:  newsecret
+
