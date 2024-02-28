@@ -8,7 +8,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'ae5c460f-c098-4af6-83ab-94701cc867aa'
   imageRepository: 'binduRepo'
-  containerRegistry: 'testacr424.azurecr.io'
+  containerRegistry: 'registryfeb28.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
