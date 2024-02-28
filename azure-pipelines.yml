@@ -6,8 +6,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'ae5c460f-c098-4af6-83ab-94701cc867aa'
-  imageRepository: 'binduRepo'
+  dockerRegistryServiceConnection: 'feb28svccon'
+  imageRepository: 'pythonRepo'
   containerRegistry: 'registryfeb28.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -55,7 +55,11 @@ stages:
         action: 'deploy'
         connectionType: 'kubernetesServiceConnection'
         kubernetesServiceConnection: 'akssvcconn'
-        manifests: '$(Build.SourcesDirectory)/manifests'
+        manifests: |
+          $(Pipeline.Workspace)/manifests/python-new.yaml.yml
+          $(Pipeline.Workspace)/manifests/mysql-new.yaml.yml
+          $(Pipeline.Workspace)/manifests/mysql-service
+          $(Pipeline.Workspace)/manifests/flask-service.yaml
 
 
     
