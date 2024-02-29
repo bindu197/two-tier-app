@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: registryfeb28.azurecr.io/bindurepo
+        image: registryfeb28.azurecr.io/pythonrepo
         resources:
           limits:
             memory: "128Mi"
