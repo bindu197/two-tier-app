@@ -25,5 +25,5 @@ spec:
         - containerPort: 3306
 
       imagePullSecrets:
-        - name:  newsecret
+        - name:  acrsecret
 
