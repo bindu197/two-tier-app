@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: himaacr.azurecr.io/pythonrepo
+        image: himaacr.azurecr.io/pythonrepo:12
         resources:
           limits:
             memory: "128Mi"
