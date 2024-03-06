@@ -46,3 +46,36 @@ stages:
           command: 'buildAndPush'
           Dockerfile: '**/sqlimage/Dockerfile'
           tags: $(tag)
+      
+    - task: PublishPipelineArtifact@1
+      inputs:
+          targetPath: '$(Pipeline.Workspace)/s/manifests'
+          artifact: 'binduartifact'
+          publishLocation: 'pipeline'
+      
+      
+
+- stage: DeploytoAKS
+  dependsOn: Build
+  jobs:
+    - job: Deploytokubernetescluster
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'binduartifact'
+          targetPath: '$(Pipeline.Workspace)/bindu'
+          
+
+      - task: KubernetesManifest@1
+        inputs:
+          action: 'deploy'
+          connectionType: 'kubernetesServiceConnection'
+          kubernetesServiceConnection: 'akssvcconn'
+          manifests: | 
+           $(Pipeline.Workspace)/bindu/flask-service.yml
+           $(Pipeline.Workspace)/bindu/mysql-new.yml
+           $(Pipeline.Workspace)/bindu/mysql-service.yml
+           $(Pipeline.Workspace)/bindu/python-new.yml
