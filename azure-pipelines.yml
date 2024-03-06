@@ -50,7 +50,7 @@ stages:
     - task: PublishPipelineArtifact@1
       inputs:
           targetPath: '$(Pipeline.Workspace)/s/manifests'
-          artifact: 'binduartifact'
+          artifact: 'manifests'
           publishLocation: 'pipeline'
       
       
@@ -65,7 +65,7 @@ stages:
       - task: DownloadPipelineArtifact@2
         inputs:
           buildType: 'current'
-          artifactName: 'binduartifact'
+          artifactName: 'manifests'
           targetPath: '$(Pipeline.Workspace)/manifests'
           
 
