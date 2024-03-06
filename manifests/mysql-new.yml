@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mysql-container
-        image: registryfeb28.azurecr.io/sqlrepo
+        image: himaacr.azurecr.io/sqlrepo
         resources:
           limits:
             memory: "128Mi"
