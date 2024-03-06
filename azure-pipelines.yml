@@ -81,4 +81,6 @@ stages:
            $(Pipeline.Workspace)/manifests/mysql-service.yml
            $(Pipeline.Workspace)/manifests/python-new.yml
 
+          containers: 'himaacr.azurecr.io/sqlrepo:12'
+
           
