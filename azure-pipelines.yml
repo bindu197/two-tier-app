@@ -66,7 +66,7 @@ stages:
         inputs:
           buildType: 'current'
           artifactName: 'binduartifact'
-          targetPath: '$(Pipeline.Workspace)/bindu'
+          targetPath: '$(Pipeline.Workspace)/manifests'
           
 
       - task: KubernetesManifest@1
@@ -76,9 +76,9 @@ stages:
           kubernetesServiceConnection: 'akssvcconn'
           imagePullSecrets: 'acrsecret'
           manifests: |
-           $(Pipeline.Workspace)/bindu/flask-service.yml
-           $(Pipeline.Workspace)/bindu/mysql-new.yml
-           $(Pipeline.Workspace)/bindu/mysql-service.yml
-           $(Pipeline.Workspace)/bindu/python-new.yml
+           $(Pipeline.Workspace)/manifests/flask-service.yml
+           $(Pipeline.Workspace)/manifests/mysql-new.yml
+           $(Pipeline.Workspace)/manifests/mysql-service.yml
+           $(Pipeline.Workspace)/manifests/python-new.yml
 
           
