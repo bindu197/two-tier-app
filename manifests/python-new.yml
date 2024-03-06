@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: registryfeb28.azurecr.io/pythonrepo
+        image: himaacr.azurecr.io/pythonrepo
         resources:
           limits:
             memory: "128Mi"
@@ -26,6 +26,5 @@ spec:
         env:
         - name: MYSQL_HOST
           value: "clusterip-to-change"
-      imagePullSecrets:
-        - name:  newsecret
+   
 
