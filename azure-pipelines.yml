@@ -74,8 +74,10 @@ stages:
           action: 'deploy'
           connectionType: 'kubernetesServiceConnection'
           kubernetesServiceConnection: 'akssvcconn'
-          manifests: | 
+          manifests: |
            $(Pipeline.Workspace)/bindu/flask-service.yml
            $(Pipeline.Workspace)/bindu/mysql-new.yml
            $(Pipeline.Workspace)/bindu/mysql-service.yml
            $(Pipeline.Workspace)/bindu/python-new.yml
+
+          imagePullSecrets: 'acrsecret'
