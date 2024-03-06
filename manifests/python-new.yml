@@ -23,8 +23,7 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 5000
-        imagePullSecrets:
-        - name: acrsecret
+        
         env:
         - name: MYSQL_HOST
           value: "clusterip-to-change"
