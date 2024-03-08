@@ -90,6 +90,7 @@ stages:
           containers: 'himaacr.azurecr.io/pythonrepo:$(tag)'
      
     - job:
+      dependsOn: Deploytokubernetescluster
       displayName: retrieve cluster ip
       steps:
         - script: |
