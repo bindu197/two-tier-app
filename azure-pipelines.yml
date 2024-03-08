@@ -68,19 +68,16 @@ stages:
           artifactName: 'manifests'
           targetPath: '$(Pipeline.Workspace)/manifests'
           
-
       - task: KubernetesManifest@1
         inputs:
           action: 'deploy'
           connectionType: 'kubernetesServiceConnection'
           kubernetesServiceConnection: 'akssvcconn'
-          imagePullSecrets: 'acrsecret'
           manifests: |
-           $(Pipeline.Workspace)/manifests/flask-service.yml
            $(Pipeline.Workspace)/manifests/mysql-new.yml
            $(Pipeline.Workspace)/manifests/mysql-service.yml
-           $(Pipeline.Workspace)/manifests/python-new.yml
-
+          containers: 'himaacr.azurecr.io/sqlrepo:$(tag)'
+     
         
 
           
