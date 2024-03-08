@@ -94,6 +94,8 @@ stages:
          connectionType: 'Kubernetes Service Connection'
          kubernetesServiceEndpoint: 'akssvcconn'
       - bash: |
+         kubectl get pod
+         CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
          kubectl apply -f python-new.yml
          kubectl set env deployment/flask MYSQL_HOST=$CLUSTER_IP
          kubectl apply -f flask-service.yml
