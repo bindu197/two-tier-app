@@ -93,8 +93,20 @@ stages:
       dependsOn: Deploytokubernetescluster
       displayName: retrieve cluster ip
       
+      
       steps:
-        - script: |
+      
+      - task: Kubernetes@1
+        inputs:
+          connectionType: 'Kubernetes Service Connection'
+          kubernetesServiceEndpoint: 'akssvcconn'
+          command: 'get'
+          arguments: 'kubectl get svc mysql-service -o jsonpath=''{.spec.clusterIP}'''
+          secretType: 'dockerRegistry'
+          containerRegistryType: 'Azure Container Registry'
+      
+        
+      - script: |
             az aks install-cli
             CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
             echo "ClusterIP: $CLUSTER_IP"
