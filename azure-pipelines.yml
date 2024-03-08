@@ -108,12 +108,15 @@ stages:
 
       - bash: |
          kubectl get pod
+         kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}'
+         CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
+         echo "ClusterIP: $CLUSTER_IP"
+
       
         
-      - script: |
-            az aks install-cli
-            CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
-            echo "ClusterIP: $CLUSTER_IP"
+
+            
+            
 
         
 
