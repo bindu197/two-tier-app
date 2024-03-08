@@ -77,6 +77,17 @@ stages:
            $(Pipeline.Workspace)/manifests/mysql-new.yml
            $(Pipeline.Workspace)/manifests/mysql-service.yml
           containers: 'himaacr.azurecr.io/sqlrepo:$(tag)'
+        
+      
+      - task: KubernetesManifest@1
+        inputs:
+          action: 'deploy'
+          connectionType: 'kubernetesServiceConnection'
+          kubernetesServiceConnection: 'akssvcconn'
+          manifests: |
+            $(Pipeline.Workspace)/manifests/python-new.yml
+            $(Pipeline.Workspace)/manifests/flask-service.yml
+          containers: 'himaacr.azurecr.io/pythonrepo:$(tag)'
      
         
 
