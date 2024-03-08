@@ -92,8 +92,10 @@ stages:
     - job:
       dependsOn: Deploytokubernetescluster
       displayName: retrieve cluster ip
+      
       steps:
         - script: |
+            az aks install-cli
             CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
             echo "ClusterIP: $CLUSTER_IP"
 
