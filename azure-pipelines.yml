@@ -96,14 +96,9 @@ stages:
       
       steps:
       
-      - task: Kubernetes@1
+      - task: KubectlInstaller@0
         inputs:
-          connectionType: 'Kubernetes Service Connection'
-          kubernetesServiceEndpoint: 'akssvcconn'
-          command: 'get'
-          arguments: 'kubectl get svc mysql-service -o jsonpath=''{.spec.clusterIP}'''
-          secretType: 'dockerRegistry'
-          containerRegistryType: 'Azure Container Registry'
+          kubectlVersion: 'latest'
       
         
       - script: |
