@@ -89,6 +89,13 @@ stages:
             $(Pipeline.Workspace)/manifests/flask-service.yml
           containers: 'himaacr.azurecr.io/pythonrepo:$(tag)'
      
+    - job:
+      displayName: retrieve cluster ip
+      steps:
+        - script: |
+            CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
+            echo "ClusterIP: $CLUSTER_IP"
+
         
 
           
