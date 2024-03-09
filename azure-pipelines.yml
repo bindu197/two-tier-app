@@ -97,6 +97,7 @@ stages:
          kubectl get pod
          CLUSTER_IP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
          kubectl apply -f manifests/python-new.yml
+         kubectl set image deployment/flask flask-container=himaacr.azurecr.io/pythonrepo:$(tag)
          kubectl set env deployment/flask MYSQL_HOST=$CLUSTER_IP
          kubectl apply -f manifests/flask-service.yml
      
