@@ -14,15 +14,14 @@ spec:
       labels:
         app: flask-new
     spec:
+      imagePullSecrets:
+      - name: bindu-secret
       containers:
       - name: flask-container
         image: march11.azurecr.io/pythonrepo
 
         ports:
         - containerPort: 5000
-      imagePullSecrets:
-        - name: bindu-secret
-        
         env:
         - name: MYSQL_HOST
           value: "clusterip-to-change"
