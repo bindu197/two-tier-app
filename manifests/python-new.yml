@@ -20,6 +20,8 @@ spec:
 
         ports:
         - containerPort: 5000
+        imagePullSecrets:
+        - name: bindu-secret
         
         env:
         - name: MYSQL_HOST
