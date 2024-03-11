@@ -20,7 +20,7 @@ spec:
 
         ports:
         - containerPort: 5000
-        imagePullSecrets:
+      imagePullSecrets:
         - name: bindu-secret
         
         env:
