@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: mysql-new
   labels: 
-    app: mysql
+    app: mysql-new
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-new
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql-new
     spec:
       containers:
       - name: mysql-container
-        image: himaacr.azurecr.io/sqlrepo
+        image: march11.azurecr.io/sqlrepo
   
         ports:
         - containerPort: 3306
