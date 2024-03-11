@@ -1,26 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask
+  name: flask-new
   labels: 
-    app: flask
+    app: flask-new
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask
+      app: flask-new
   template:
     metadata:
       labels:
-        app: flask
+        app: flask-new
     spec:
       containers:
       - name: flask-container
-        image: himaacr.azurecr.io/pythonrepo
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: march11.azurecr.io/pythonrepo
+
         ports:
         - containerPort: 5000
         
