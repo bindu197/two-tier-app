@@ -4,7 +4,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'cfdd35f5-fd2e-4be9-8348-0fe75f21a534'
+  dockerRegistryServiceConnection: 'acravcconn'
   imageRepository: 'pythonrepo'
   containerRegistry: 'himaacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
