@@ -1,27 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-new
-  labels: 
-    app: mysql-new
+  name: mysql
+  
+  labels:
+    app: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-new
+      app: mysql
   template:
     metadata:
       labels:
-        app: mysql-new
+        app: mysql
     spec:
       containers:
       - name: mysql-container
-        image: march11.azurecr.io/sqlrepo
-  
+        image: march12acr.azurecr.io/pythonimage:1
         ports:
         - containerPort: 3306
-      imagePullSecrets:
-        - name: bindu-secret
-
-    
-
+        volumeMounts:
+          - name:  testvolume
+            mountPath:  /var/lib/mysql
+      volumes:
+      - name: testvolume
+        hostPath:
+          path: /var/tmp/storage
