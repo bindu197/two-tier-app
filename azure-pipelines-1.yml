@@ -1,14 +1,14 @@
-trigger:
-- main
+# trigger:
+# - main
 
 resources:
 - repo: self
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '123da8ef-7cb0-4eba-be46-72eb9485d9bb'
-  imageRepository: 'pythonrepo'
-  containerRegistry: 'march11.azurecr.io'
+  dockerRegistryServiceConnection: 'march12acrsvcconn'
+  imageRepository: 'pythonimage'
+  containerRegistry: 'march12acr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -37,8 +37,8 @@ stages:
 
     - task: Docker@2
       inputs:
-        containerRegistry: 'acrsvcconn'
-        repository: 'sqlrepo'
+        containerRegistry: 'march12acrsvcconn'
+        repository: 'sqlimage'
         command: 'buildAndPush'
         Dockerfile: '**/sqlimage/Dockerfile'
 
@@ -62,13 +62,10 @@ stages:
 
     - bash: |
        
-       kubectl create secret docker-registry bindu-secret --docker-server=march11.azurecr.io --docker-username=march11 --docker-password=ulcT0Jxfg4Sz0/L1/iVQIHpdNYNIVKcrFETlokUBLO+ACRBICOsn --docker-email=vamsi.miriyam95@gmail.com
        kubectl apply -f manifests/mysql-new.yml
-       kubectl set image deploy/mysql-new mysql-container=march11.azurecr.io/sqlrepo:$(tag)
        kubectl apply -f manifests/mysql-service.yml
        CLUSTERIP=$(kubectl get svc mysql-service -o jsonpath='{.spec.clusterIP}')
        kubectl apply -f manifests/python-new.yml
-       kubectl set image deploy/flask-new flask-container=march11.azurecr.io/pythonrepo:$(tag)
        kubectl apply -f manifests/flask-service.yml
        kubectl set env deployment/flask-new MYSQL_HOST=$CLUSTERIP
        kubectl get pods
