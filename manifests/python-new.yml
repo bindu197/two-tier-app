@@ -1,29 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-new
-  labels: 
-    app: flask-new
+  name: flask
+
+  labels:
+    app: flask
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask-new
+      app: flask
   template:
     metadata:
       labels:
-        app: flask-new
+        app: flask
     spec:
-      imagePullSecrets:
-      - name: bindu-secret
       containers:
       - name: flask-container
-        image: march11.azurecr.io/pythonrepo
-
+        image: march12acr.azurecr.io/pythonimage:1
         ports:
-        - containerPort: 5000
+        - containerPort: 5000        
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+            
         env:
         - name: MYSQL_HOST
-          value: "clusterip-to-change"
-   
-
+          value: 10.0.32.236
