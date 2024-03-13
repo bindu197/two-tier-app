@@ -16,6 +16,8 @@ spec:
         app: mysql
     spec:
       containers:
+        imagePullSecrets:
+        - name: acrsecret
       - name: mysql-container
         image: march12acr.azurecr.io/pythonimage:1
         ports:
